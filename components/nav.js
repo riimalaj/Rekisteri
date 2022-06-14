@@ -18,9 +18,6 @@ const Nav = () => {
                 <li>
                     <Link href = "/api/Read"><a>Read</a></Link>
                 </li>
-                <li>
-                    <Link href = "/ContactList"><a>Output</a></Link>
-                </li>
 
             </ul>
         </div>

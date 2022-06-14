@@ -2,22 +2,22 @@
 import {useState} from 'react'
 import formiStyle from '../styles/Formi.module.css'
 import Nav from "../components/Nav"
-import ContactSaver from "./DataSaver"
 import { PrismaClient } from ".prisma/client"
-import { GetServerSideProps } from 'next'
+//import { GetServerSideProps } from 'next'
 
-export async function getServerSideProps() {
-    const prisma = new PrismaClient() 
 
-    const res = await prisma.Playlist.findMany()
-        
-    console.log("res:", res)
-    
-    return {
-      props: { initialContacts: res }, // will be passed to the page component as props
-    }    
-}
 
+export function ReadData({res}){
+    const[data,setData]=useState({})
+    setData(res.map((r)=>{r.fName}))
+    console.log("showData:", res)
+    render()
+    return(
+        <div>       
+          <h3>data</h3>                        
+        </div>
+    )
+  }
 
 export  default function CForm() {
     const [formData, setFormData] = useState({})
@@ -27,7 +27,7 @@ export  default function CForm() {
         "lName": formData.lName,
         "age": parseInt(formData.age),            
     }
-
+      
     const saveContact = async(contact) => {
         const response = await fetch('/api/PostData', {
             method:'POST',
@@ -61,9 +61,14 @@ export  default function CForm() {
     }    
 
     const readData = async () => {
-        await fetch('api/Read', {
+        const res = await fetch('api/Read', {
             method:'GET'
         })
+
+        return{
+            props:{res}
+        }
+        
     }
 
     return (
@@ -102,6 +107,7 @@ export  default function CForm() {
         <form>
             <button className = {formiStyle.button} onClick = {readData}>Read data</button>
         </form>
+
 
     </div>
 

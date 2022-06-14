@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import {useState} from "react"
 import ContactForm from "./CForm.js"
-import ContactList from "./ContactList.js"
+
+
 
 function MyApp() {
   const [contacts, updateContacts] = useState([])
@@ -10,6 +11,8 @@ function MyApp() {
     updateContacts([...contacts, contact])
   }
   console.log(contacts)
+
+
 
   return (
   <div>

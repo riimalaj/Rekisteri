@@ -1,13 +1,23 @@
-import { PrismaClient } from ".prisma/client"
+import { PrismaClient } from "@prisma/client"
 
-const prisma = new PrismaClient() 
 
-export default async function Read(){
-    console.log("Read function")
+
+export default async function getData() {  
+  const prisma = new PrismaClient() 
+  console.log("getData function in /api/Read.js")
     const res = await prisma.Playlist.findMany()
-    
-    
-    return(
-        <span>{res}</span>
-    )
-}
+    res.map((r) => {
+        console.log(r.fName)
+    })
+     
+    return {
+      props: {res} // will be passed to the page component as props
+    }    
+  }
+
+
+
+
+
+  
+  
