@@ -4,18 +4,8 @@ import React from "react"
 import formiStyle from '../../styles/Formi.module.css'
 
 
-const showData = (props) => {
-    console.log(props)
-    const f = props.contactList.map((e)=>{
-        return e.fName
-    })
-    const l = props.contactList.map((l)=>{
-        return l.lName 
-    })
-    const a = props.contactList.map((a)=>{
-        return parseInt(a.age)
-    })
-
+const showData = ({contactList}) => {
+    console.log("contactList:", contactList )
     return (        
         <table className={formiStyle.taulu}>
             <thead>
@@ -24,9 +14,14 @@ const showData = (props) => {
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>{f}</td><td>{l}</td><td>{a}</td>
-            </tr>
+            {contactList.map((e)=>(
+                //console.log(e.lName);
+                <tr key={e.id}>
+                    <td>{e.fName}</td>
+                    <td>{e.lName}</td>
+                    <td>{e.age}</td>
+                </tr>
+            ))}            
             </tbody>
         </table>
 )
