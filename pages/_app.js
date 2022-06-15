@@ -1,25 +1,7 @@
-import '../styles/globals.css'
-import {useState} from "react"
-import ContactForm from "./CForm.js"
+import { useRouter } from 'next/router'
 
+export default function App({ Component, pageProps }) {
+  const router = useRouter()
 
-
-function MyApp() {
-  const [contacts, updateContacts] = useState([])
-
-  const addContact = (contact) => {
-    updateContacts([...contacts, contact])
-  }
-  console.log(contacts)
-
-
-
-  return (
-  <div>
-    <ContactForm addContact = {addContact} />
-    
-  </div>
-  )
+  return <Component {...pageProps} key={router.asPath} />
 }
-
-export default MyApp

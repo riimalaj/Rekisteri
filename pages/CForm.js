@@ -7,20 +7,20 @@ import { PrismaClient } from ".prisma/client"
 
 
 
-export function ReadData({res}){
-    const[data,setData]=useState({})
-    setData(res.map((r)=>{r.fName}))
+export function getData(props){    
+    const res = props.res
     console.log("showData:", res)
-    render()
+    
     return(
         <div>       
-          <h3>data</h3>                        
+            {res.fName}
         </div>
     )
   }
 
 export  default function CForm() {
     const [formData, setFormData] = useState({})
+    const [on, setOn] = useState(false)
 
     const contactData = {
         "fName": formData.fName,
@@ -71,6 +71,8 @@ export  default function CForm() {
         
     }
 
+
+    const show = () => setOn(true)
     return (
     <div>
     <Nav />
@@ -107,11 +109,7 @@ export  default function CForm() {
         <form>
             <button className = {formiStyle.button} onClick = {readData}>Read data</button>
         </form>
-
-
-    </div>
-
-   
+    </div>   
 </div>
   )
 }
