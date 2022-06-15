@@ -7,13 +7,16 @@ const Nav = () => {
         <div className={navStyles.nav}>            
             <ul>
                 <li>
-                    <Link href = "/pleikkari"><a>Reading from db</a></Link>
+                    <Link href = "/kontaktit"><a>Kontaktit</a></Link>
+                </li>
+                <li>
+                    <Link href = "/huolto"><a>Huollot</a></Link>
+                </li>                
+                <li>
+                    <Link href = "/HuoltoForm"><a>Huolto</a></Link>
                 </li>
                 <li>
                     <Link href = "/About"><a>About</a></Link>
-                </li>
-                <li>
-                    <Link href = "/CForm"><a>Formi</a></Link>
                 </li>
 
             </ul>

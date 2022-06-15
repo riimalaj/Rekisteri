@@ -7,31 +7,20 @@ import { PrismaClient } from ".prisma/client"
 
 
 
-export function getData(props){    
-    const res = props.res
-    console.log("showData:", res)
-    
-    return(
-        <div>       
-            {res.fName}
-        </div>
-    )
-  }
-
-export  default function CForm() {
+export  default function Huolto() {
     const [formData, setFormData] = useState({})
     const [on, setOn] = useState(false)
 
-    const contactData = {
-        "fName": formData.fName,
-        "lName": formData.lName,
-        "age": parseInt(formData.age),            
+    const huoltoData = {
+        "kohde": formData.kohde,
+        "huolto": formData.huolto,
+        "km": parseInt(formData.km),            
     }
       
-    const saveContact = async(contact) => {
-        const response = await fetch('/api/PostData', {
+    const saveContact = async(huolto) => {
+        const response = await fetch('/api/PostHuolto', {
             method:'POST',
-            body:JSON.stringify(contact)
+            body:JSON.stringify(huolto)
         })
 
         if (!response.ok){
@@ -56,8 +45,8 @@ export  default function CForm() {
 
     const submitData = async (event) => { 
         event.preventDefault;             
-        console.log("submitData: ",contactData);    
-        await saveContact(contactData)          
+        console.log("submitData: ", huoltoData);    
+        await saveContact(huoltoData)          
     }    
 
     const readData = async () => {
@@ -81,33 +70,30 @@ export  default function CForm() {
         <input 
             className = {formiStyle.input}
             type = "text"
-            name = "fName"
-            placeholder = "Etunimi"
+            name = "kohde"
+            placeholder = "Kohde"
             onChange={handleInputChange}
-            value={formData.fName}
+            value={formData.kohde}
         />
 
         <input 
             className = {formiStyle.input}
             type = "text"
-            name = "lName"
-            placeholder = "Sukunimi"
+            name = "huolto"
+            placeholder = "Huolto"
             onChange={handleInputChange}
-            value={formData.lName}
+            value={formData.huolto}
         />
 
         <input 
             className = {formiStyle.input}
             type = "number"
-            name = "age"
-            placeholder = "Ikä"
+            name = "km"
+            placeholder = "km"
             onChange={handleInputChange}        
-            value={formData.age}
+            value={formData.km}
         />
         <button className = {formiStyle.button}>Input</button>
-        </form>
-        <form>
-            <button className = {formiStyle.button} onClick = {readData}>Read data</button>
         </form>
     </div>   
 </div>
