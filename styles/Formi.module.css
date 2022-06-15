@@ -1,9 +1,12 @@
 
 
 .taulu {
+  margin:50px;
+  border:1px solid;
+}
 
-  border:1px;
-
+.taulunHeader{
+  background-color:lightgray;
 }
   .form{
     display:none;
@@ -59,4 +62,5 @@
     border-radius: 45px;
     transition: all 0.4s;
     margin-top:80px;
+    margin-left:50px;
   }

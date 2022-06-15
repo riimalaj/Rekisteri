@@ -1,8 +1,9 @@
-import {PrismaClient} from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 import React from "react"
 import Nav from '../../components/nav'
 import formiStyle from '../../styles/Formi.module.css'
 import Link from "next/link"
+
 
 
 const showData = ({contactList}) => {
@@ -11,7 +12,7 @@ const showData = ({contactList}) => {
         <div>
             <Nav />
             <table className={formiStyle.taulu}>
-                <thead>
+                <thead className = {taulunHeader}>
                     <tr>
                         <th>Etunimi</th><th>Sukunimi</th><th>Ikä</th>
                     </tr>
@@ -34,9 +35,8 @@ const showData = ({contactList}) => {
 }
 
 export async function getServerSideProps() {
-    const prisma = new PrismaClient()      
-    //const contacts = await prisma.playlist.findMany()
-    const contacts = "";
+    const prisma = new PrismaClient();
+    const contacts = await prisma.playlist.findMany()    
     const newData = Object.values(contacts)
     const c = JSON.stringify(contacts)
     console.log(JSON.stringify(contacts))
@@ -44,8 +44,9 @@ export async function getServerSideProps() {
     return{
         props:{            
             contactList:newData
-        }
+        }        
     }
+    
 }
 
 export default showData;
