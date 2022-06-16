@@ -7,19 +7,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Playlist {
+model Huolto {
   id           Int    @default(autoincrement()) @id
-  fName        String
-  lName        String
-  age          Int
+  createdAt    DateTime   @default(now())
+  kohde        String
+  huolto       String
+  km           Int
+  info         String
 }
 
-model Maint {
-  id           Int    @default(autoincrement()) @id
-  kohde        String
-  huolto        String
-  km         Int
-}
 
 model Contact {
   id           Int    @default(autoincrement()) @id

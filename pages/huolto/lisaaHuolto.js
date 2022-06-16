@@ -6,18 +6,19 @@ import Nav from "../../components/Nav"
 
 
 
-export  default function Huolto() {
+export default function Huolto() {
     const [formData, setFormData] = useState({})
     const [on, setOn] = useState(false)
 
     const huoltoData = {
         "kohde": formData.kohde,
         "huolto": formData.huolto,
-        "km": parseInt(formData.km),            
+        "km": parseInt(formData.km),
+        "info": formData.info,            
     }
       
-    const saveContact = async(huolto) => {
-        const response = await fetch('./api/PostHuolto', {
+    const saveHuolto = async(huolto) => {
+        const response = await fetch('../api/PostHuolto', {
             method:'POST',
             body:JSON.stringify(huolto)
         })
@@ -45,11 +46,11 @@ export  default function Huolto() {
     const submitData = async (event) => { 
         event.preventDefault;             
         console.log("submitData: ", huoltoData);    
-        await saveContact(huoltoData)          
+        await saveHuolto(huoltoData)          
     }    
 
     const readData = async () => {
-        const res = await fetch('api/Read', {
+        const res = await fetch('./api/Read', {
             method:'GET'
         })
 
@@ -58,7 +59,6 @@ export  default function Huolto() {
         }
         
     }
-
 
     const show = () => setOn(true)
     return (
@@ -92,7 +92,15 @@ export  default function Huolto() {
             onChange={handleInputChange}        
             value={formData.km}
         />
-        <button className = {formiStyle.button}>Input</button>
+
+        <textarea 
+            className = {formiStyle.input}            
+            name = "info"
+            placeholder = "Lisäinfo"
+            onChange={handleInputChange}        
+            value={formData.info}
+        />
+        <button className = {formiStyle.button}>Talleta</button>
         </form>
     </div>   
 </div>

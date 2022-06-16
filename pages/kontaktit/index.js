@@ -14,7 +14,7 @@ const showData = ({contactList}) => {
             <table className={formiStyle.taulu}>
                 <thead className = {formiStyle.taulunHeader}>
                     <tr>
-                        <th>Etunimi</th><th>Sukunimi</th><th>Ikä</th>
+                        <th>Etunimi</th><th>Sukunimi</th><th>Puhelinnumero</th><th>Sähköposti</th><th>Info</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,9 @@ const showData = ({contactList}) => {
                     <tr key={e.id}>
                         <td>{e.fName}</td>
                         <td>{e.lName}</td>
-                        <td>{e.age}</td>
+                        <td>{e.tel}</td>
+                        <td>{e.email}</td>
+                        <td>{e.other}</td>
                     </tr>
                 ))}            
                 </tbody>

@@ -18,17 +18,19 @@ export function getData(props){
   }
 
 export  default function CForm() {
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState([])
     const [on, setOn] = useState(false)
 
     const contactData = {
         "fName": formData.fName,
         "lName": formData.lName,
-        "age": parseInt(formData.age),            
+        "tel": formData.tel,            
+        "email": formData.email,
+        "other": formData.other,
     }
       
     const saveContact = async(contact) => {
-        const response = await fetch('./api/PostData', {
+        const response = await fetch('../api/PostData', {
             method:'POST',
             body:JSON.stringify(contact)
         })
@@ -97,13 +99,31 @@ export  default function CForm() {
 
         <input 
             className = {formiStyle.input}
-            type = "number"
-            name = "age"
-            placeholder = "Ikä"
+            type = "text"
+            name = "tel"
+            placeholder = "Puhelinnumero"
             onChange={handleInputChange}        
-            value={formData.age}
+            value={formData.tel}
         />
-        <button className = {formiStyle.button}>Input</button>
+        <input 
+            className = {formiStyle.input}
+            type = "text"
+            name = "email"
+            placeholder = "Sähköposti"
+            onChange={handleInputChange}        
+            value={formData.email}
+        />
+
+        <input 
+            className = {formiStyle.input}
+            type = "text"
+            name = "other"
+            placeholder = "Lyhyt info"
+            onChange={handleInputChange}        
+            value={formData.other}
+        />
+
+        <button className = {formiStyle.button}>Talleta</button>
         </form>
     </div>   
 </div>
