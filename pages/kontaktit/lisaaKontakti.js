@@ -1,8 +1,7 @@
 
 import {useState} from 'react'
-import formiStyle from '../styles/Formi.module.css'
+import formiStyle from '../../styles/Formi.module.css'
 import Nav from "../../components/Nav"
-import { PrismaClient } from ".prisma/client"
 //import { GetServerSideProps } from 'next'
 
 
@@ -29,7 +28,7 @@ export  default function CForm() {
     }
       
     const saveContact = async(contact) => {
-        const response = await fetch('/api/PostData', {
+        const response = await fetch('./api/PostData', {
             method:'POST',
             body:JSON.stringify(contact)
         })
@@ -105,9 +104,6 @@ export  default function CForm() {
             value={formData.age}
         />
         <button className = {formiStyle.button}>Input</button>
-        </form>
-        <form>
-            <button className = {formiStyle.button} onClick = {readData}>Read data</button>
         </form>
     </div>   
 </div>

@@ -1,8 +1,7 @@
 
 import {useState} from 'react'
-import formiStyle from '../styles/Formi.module.css'
-import Nav from "../components/Nav"
-import { PrismaClient } from ".prisma/client"
+import formiStyle from '../../styles/Formi.module.css'
+import Nav from "../../components/Nav"
 //import { GetServerSideProps } from 'next'
 
 
@@ -18,7 +17,7 @@ export  default function Huolto() {
     }
       
     const saveContact = async(huolto) => {
-        const response = await fetch('/api/PostHuolto', {
+        const response = await fetch('./api/PostHuolto', {
             method:'POST',
             body:JSON.stringify(huolto)
         })

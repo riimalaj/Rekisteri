@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client"
 import type {NextApiRequest, NextApiResponse } from "next"
+const prisma = ""
 
-const prisma = new PrismaClient
+if (!prisma){
+    const prisma = new PrismaClient()      
+}
 
 export default async(req: NextApiRequest, res: NextApiResponse)=>{
     if (req.method !== 'POST') {
@@ -11,7 +14,7 @@ export default async(req: NextApiRequest, res: NextApiResponse)=>{
     const huoltoData = JSON.parse(req.body)
     
     console.log("PostData contact data: ", huoltoData)
-    const savedHuolto = await prisma.Maint.create({
+    const savedHuolto = await prisma.Contact.create({
         data: huoltoData
     })
     res.json(savedHuolto)

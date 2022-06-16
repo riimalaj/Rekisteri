@@ -12,7 +12,7 @@ const showData = ({contactList}) => {
         <div>
             <Nav />
             <table className={formiStyle.taulu}>
-                <thead className = {taulunHeader}>
+                <thead className = {formiStyle.taulunHeader}>
                     <tr>
                         <th>Etunimi</th><th>Sukunimi</th><th>Ikä</th>
                     </tr>
@@ -28,24 +28,27 @@ const showData = ({contactList}) => {
                 ))}            
                 </tbody>
             </table>
-            <Link href = "lisaaKontakti"><a><button className = {formiStyle.button}>Uusi kontakti</button></a></Link>
+            <Link href = "./kontaktit/lisaaKontakti"><a><button className = {formiStyle.button}>Uusi kontakti</button></a></Link>
         </div>
 )
 
 }
 
 export async function getServerSideProps() {
-    const prisma = new PrismaClient();
-    const contacts = await prisma.playlist.findMany()    
-    const newData = Object.values(contacts)
-    const c = JSON.stringify(contacts)
-    console.log(JSON.stringify(contacts))
-
-    return{
-        props:{            
-            contactList:newData
-        }        
-    }
+    const prisma = ""
+    if (!prisma){
+        const prisma = new PrismaClient()          
+        const contacts = await prisma.Contact.findMany()    
+        const newData = Object.values(contacts)
+        const c = JSON.stringify(contacts)
+        console.log(JSON.stringify(contacts))
+        
+        return{
+            props:{            
+                contactList:newData
+            }        
+        }
+}
     
 }
 

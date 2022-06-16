@@ -8,8 +8,9 @@ import Nav from '../../components/nav'
 const showData = ({huollot}) => {    
     return (        
         <div>
+            <Nav />
             <table className={formiStyle.taulu}>
-                <thead>
+                <thead className={formiStyle.taulunHeader}>
                     <tr>
                         <th>Kohde</th><th>Huolto</th><th>KM</th>
                     </tr>
@@ -24,24 +25,28 @@ const showData = ({huollot}) => {
                 ))}            
                 </tbody>
             </table>      
-            <Link href = "lisaaHuolto"><a>Uusi huolto</a></Link>
+            <Link href = "./lisaaHuolto"><button className = {formiStyle.button}><a>Uusi huolto</a></button></Link>
         </div>              
 )
 
 }
 
 export async function getServerSideProps() {
-    const prisma = new PrismaClient()      
-    const huollot = await prisma.Maint.findMany()
-    const newData = Object.values(huollot)
-    //const c = JSON.stringify(huollot)
-    console.log(JSON.stringify(huollot))
-
-    return{
-        props:{            
-            huollot:newData
-        }
+    const prisma = ""
+    if (!prisma){
+        const prisma = new PrismaClient()      
+        console.log("prisma", prisma)
+        const huollot = await prisma.Maint.findMany()
+        const newData = Object.values(huollot)
+        //const c = JSON.stringify(huollot)
+        console.log(JSON.stringify(huollot))
+    
+        return{
+            props:{            
+                huollot:newData
+            }
     }
+}
 }
 
 export default showData;
