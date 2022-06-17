@@ -19,7 +19,7 @@ export default async(req, res)=>{
             },
             })
         
-        console.log(`Deleting record ${delRec}`)
+        console.log(`Deleting record ${id}`)
         res.json({
             succcess: true,    
             message: `Record ${id} deleted`,
