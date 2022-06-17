@@ -10,8 +10,13 @@ const showHuoltoData = ({huollot}) => {
 
     const poistaRec = (id) => {
         console.log("poistaRec id:", id)
-        fetch('/api/deleteHuolto', {
-            data: id
+        fetch('../api/deleteHuolto', {
+            method: 'DELETE',
+            body:id
+        })
+        .then (response => response.json())
+        .then (result => {
+            console.log("Results:", result)
         })
     }
 
