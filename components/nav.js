@@ -1,4 +1,4 @@
-
+import { PrismaClient } from '.prisma/client'
 import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
 
@@ -20,6 +20,11 @@ const Nav = () => {
         </div>
     )
 
+}
+
+var prisma;
+export const getInitialProps = () => {    
+    prisma = new PrismaClient()   
 }
 
 export default Nav

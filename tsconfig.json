@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/huolto/index.js", "pages/api/deleteHuolto.js"  ],
   "exclude": [
     "node_modules"
   ]

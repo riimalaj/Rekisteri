@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client"
-import React from "react"
 import Nav from '../../components/nav'
 import formiStyle from '../../styles/Formi.module.css'
 import Link from "next/link"
-
+import { prisma } from '../db'
 
 
 const showData = ({contactList}) => {
@@ -37,9 +35,6 @@ const showData = ({contactList}) => {
 }
 
 export async function getServerSideProps() {
-    const prisma = ""
-    if (!prisma){
-        const prisma = new PrismaClient()          
         const contacts = await prisma.Contact.findMany()    
         const newData = Object.values(contacts)
         const c = JSON.stringify(contacts)
@@ -50,8 +45,6 @@ export async function getServerSideProps() {
                 contactList:newData
             }        
         }
-}
-    
 }
 
 export default showData;
