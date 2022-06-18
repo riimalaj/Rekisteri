@@ -8,6 +8,13 @@ import {nanoid} from "nanoid"
 const showHuoltoData = ({huollot}) => {       
     const bid = nanoid()
 
+    const muokkaaRec = () => {
+        console.log("muokkaaRec - funkkari")
+        return(
+            <Link key = {bid} href = "/paivitaHuolto"><a>Muokkaa</a></Link>
+            )
+        
+    }
     const poistaRec = (id) => {
         console.log("poistaRec id:", id)
         fetch('../api/deleteHuolto', {
@@ -27,7 +34,7 @@ const showHuoltoData = ({huollot}) => {
             <table className={formiStyle.taulu}>
                 <thead className={formiStyle.taulunHeader}>
                     <tr>
-                        <th>PVM</th><th>Kohde</th><th>Huolto</th><th>KM</th><th>Lisäinfo</th><th>Poista</th>
+                        <th>PVM</th><th>Kohde</th><th>Huolto</th><th>KM</th><th>Lisäinfo</th><th>Muokkaa</th><th>Poista</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +46,8 @@ const showHuoltoData = ({huollot}) => {
                         <td>{e.huolto}</td>
                         <td>{e.km}</td>
                         <td>{e.info}</td>                        
-                        <td><button onClick = {() => poistaRec(e.id)}>x</button></td>
+                        <td><button onClick = {() => muokkaaRec()}>Muokkaa</button></td>
+                        <td><button onClick = {() => poistaRec(e.id)}>Poista</button></td>
                     </tr>                                        
                     </>                                                                       
                 ))                
