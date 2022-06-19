@@ -1,4 +1,4 @@
-import {Huolto} from '../huolto/index'
+import {Huolto} from '../Huolto/index'
 import { prisma } from '../db'
 
 

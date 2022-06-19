@@ -10,7 +10,7 @@ export default async(req: NextApiRequest, res: NextApiResponse)=>{
     const contactData = JSON.parse(req.body)
     
     console.log("PostData contact data: ", contactData)
-    const savedContact = await prisma.Contact.create({
+    const savedContact = await prisma.contact.create({
         data: contactData
     })
     res.json(savedContact)

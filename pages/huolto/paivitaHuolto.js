@@ -1,107 +1,84 @@
 
-import {useState} from 'react'
 import formiStyle from '../../styles/Formi.module.css'
 import Nav from "../../components/Nav"
-import { Z_VERSION_ERROR } from 'zlib'
-//import { GetServerSideProps } from 'next'
+import { useState, useRef } from "react";
+import axios from "axios";
 
 /*
     Read data from prisma table and populate it to form fields.
 */
 
-export default function paivitaHuolto() {
-    const [formData, setFormData] = useState({})
-    const [on, setOn] = useState(false)
-
-    const huoltoData = {
-        "kohde": formData.kohde,
-        "huolto": formData.huolto,
-        "km": parseInt(formData.km),
-        "info": formData.info,            
-    }
-      
-    const saveHuolto = async(huolto) => {
-        const response = await fetch('../api/PostHuolto', {
-            method:'POST',
-            body:JSON.stringify(huolto)
-        })
-
-        if (!response.ok){
-            throw new Error(response.statusText)
-        }
-
-        return await response.json()
-    }
-
-    const handleInputChange = (event) => {
-        console.log(event.target.name)
-        setFormData(preFormData => {
-            return{
-                ...preFormData,
-                [event.target.name]: event.target.value
-            }
-        })
-    } 
+export const readData = () => {
+    console.log("readData- funkkari")
+    const res = fetch('./api/Read', {
+        method:'GET'
+    })
+    .then (res => res.json())
+    .then (data => console.log(data))
+}
 
 
-    console.log("formdata: ", formData)
+export default async function paivitaHuolto() {
+    const formRef = useRef()
+    const [disable, setDisable] = useState(false)
 
-    const submitData = async (event) => { 
-        event.preventDefault;             
-        console.log("submitData: ", huoltoData);    
-        await saveHuolto(huoltoData)          
-    }    
+    const {
+        editKohde, 
+        editHuolto, 
+        editKm, 
+        editInfo         
+        } = formRef.current;
+    
+    const kohde = editKohde.value;
+    const huolto = editHuolto.value;
+    const km = editKm.value;
+    const info = editInfo.value;
+    
+    axios.put("/api/editForm",{
+        kohde,
+        huolto,
+        km,
+        info
+    })
+    
+    window.location.reload()    
 
-    const readData = async () => {
-        const res = await fetch('./api/Read', {
-            method:'GET'
-        })
-
-        return{
-            props:{res}
-        }
+    return (        
         
-    }
-
-    const show = () => setOn(true)
-    return (
-    <div>
-    <Nav />
-    <div className = {formiStyle.form}>
-        <form onSubmit={submitData}>
+    <div>        
+    <Nav />    
+    <div className = {formiStyle.form}>        
+        <form ref = {formRef}>
+        {readData}
         <input 
             className = {formiStyle.input}
             type = "text"
-            name = "kohde"
+            name = "editKohde"
             placeholder = "Kohde"
-            onChange={handleInputChange}
-            value={formData.kohde}
+            defaultValue={huolto.kohde}
         />
 
         <input 
             className = {formiStyle.input}
             type = "text"
-            name = "huolto"
-            placeholder = "Huolto"
-            onChange={handleInputChange}
-            value={formData.huolto}
+            name = "editHuolto"
+            placeholder = "Huolto"            
+            value={huolto.huolto}
         />
 
         <input 
             className = {formiStyle.input}
             type = "number"
-            name = "km"
+            name = "editKm"
             placeholder = "km"
-            onChange={handleInputChange}        
-            value={formData.km}
+            value={huolto.km}
         />
 
         <textarea 
             className = {formiStyle.input}            
-            name = "info"
-            placeholder = "Lisäinfo"
-            onChange={handleInputChange}        
-            value={formData.info}
+            name = "editInfo"
+            placeholder = "Lisäinfo"            
+            value={huolto.info}
         />
         <button className = {formiStyle.button}>Talleta</button>
         </form>

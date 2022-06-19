@@ -3,18 +3,18 @@ import formiStyle from '../../styles/Formi.module.css'
 import Nav from '../../components/nav'
 import { prisma } from '../db'
 import {nanoid} from "nanoid"
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+
+export const muokkaaRec = () => {
+    console.log("muokkaaRec")    
+ return(<Link href = "/Huolto/paivitaHuolto">Paivita Huolto Recordi</Link>)
+}
 
 
 const showHuoltoData = ({huollot}) => {       
     const bid = nanoid()
 
-    const muokkaaRec = () => {
-        console.log("muokkaaRec - funkkari")
-        return(
-            <Link key = {bid} href = "/paivitaHuolto"><a>Muokkaa</a></Link>
-            )
-        
-    }
     const poistaRec = (id) => {
         console.log("poistaRec id:", id)
         fetch('../api/deleteHuolto', {
@@ -27,17 +27,16 @@ const showHuoltoData = ({huollot}) => {
         })
     }
 
-
     return (        
-        <div key = {bid}>
-            <Nav />
-            <table className={formiStyle.taulu}>
-                <thead className={formiStyle.taulunHeader}>
-                    <tr>
+        <div>
+            <Nav key = {bid}/>
+            <table key = {bid + 1}className={formiStyle.taulu}>
+                <thead key = {bid + 2} className={formiStyle.taulunHeader}>
+                    <tr key = {bid + 3}>
                         <th>PVM</th><th>Kohde</th><th>Huolto</th><th>KM</th><th>Lisäinfo</th><th>Muokkaa</th><th>Poista</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody key = {bid + 4}>
                 {huollot.map((e)=> (         
                     <>
                     <tr key={e.id}>                        
@@ -46,7 +45,7 @@ const showHuoltoData = ({huollot}) => {
                         <td>{e.huolto}</td>
                         <td>{e.km}</td>
                         <td>{e.info}</td>                        
-                        <td><button onClick = {() => muokkaaRec()}>Muokkaa</button></td>
+                        <td><button onClick = {() => location.href="./Huolto/paivitaHuolto".concat(e.id)}>Muokkaa</button></td>
                         <td><button onClick = {() => poistaRec(e.id)}>Poista</button></td>
                     </tr>                                        
                     </>                                                                       
@@ -56,7 +55,7 @@ const showHuoltoData = ({huollot}) => {
                 </table> 
                 
               
-            <Link href = "./huolto/lisaaHuolto"><button className = {formiStyle.button}><a>Uusi huolto</a></button></Link>            
+            <Link key = {bid + 5} href = "./huolto/lisaaHuolto"><button className = {formiStyle.button}><a>Uusi huolto</a></button></Link>            
         </div>              
 )
 

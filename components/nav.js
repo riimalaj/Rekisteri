@@ -7,10 +7,10 @@ const Nav = () => {
         <div className={navStyles.nav}>            
             <ul>
                 <li>
-                    <Link href = "/kontaktit"><a>Kontaktit</a></Link>
+                    <Link href = "/Kontaktit"><a>Kontaktit</a></Link>
                 </li>
                 <li>
-                    <Link href = "/huolto"><a>Huollot</a></Link>
+                    <Link href = "/Huolto"><a>Huollot</a></Link>
                 </li>                
                 <li>
                     <Link href = "/About"><a>About</a></Link>
