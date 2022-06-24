@@ -7,17 +7,15 @@ export default async(req, res)=>{
    const id = req.body
    
     console.log("Haetaan recordia id:", Number(id));
-    const rec = await prisma.Huolto.findOne({
+    const rec = await prisma.Huolto.findMany({
             where: {
                 id: Number(id)
             }
             });
         
     console.log('Recordi ', rec + " haettu");
-    res.json({
-        succcess: true,    
-        message: `Recordi ${id} haettu`,
-    });     
+    res.json(rec);     
+
 }
     
     

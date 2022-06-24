@@ -21,7 +21,7 @@ const showHuoltoData = ({huollot}) => {
             method:'POST',
             body:id
         })
-        .then(response => response.json())
+        .then(rec => rec.json())
         .then(data => {
             console.log("Haettu huolto record:", data)
         })
@@ -41,14 +41,14 @@ const showHuoltoData = ({huollot}) => {
 
     return (        
         <div>
-            <Nav key = {bid}/>
-            <table key = {bid + 1}className={formiStyle.taulu}>
-                <thead key = {bid + 2} className={formiStyle.taulunHeader}>
+            <Nav/>
+            <table className={formiStyle.taulu}>
+                <thead className={formiStyle.taulunHeader}>
                     <tr key = {bid + 3}>
                         <th>PVM</th><th>Kohde</th><th>Huolto</th><th>KM</th><th>Lisäinfo</th><th>Muokkaa</th><th>Poista</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody key = {bid}>
                 {huollot.map((e)=> (         
                     <>
                     <tr key={e.id}>                        
