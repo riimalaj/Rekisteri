@@ -29,11 +29,14 @@ const showHuoltoData = ({huollot}) => {
             setRec(preRec => {
                 return {
                 ...preRec,
-                data
+                data                
             }
+            
             }
                 )
-        })
+        });
+        
+
     }
 
     const poistaRec = (id) => {
@@ -48,13 +51,15 @@ const showHuoltoData = ({huollot}) => {
         })
     }
 
-
+    const data = Array.from(rec);
+    console.log("data:", data)
 
     return (        
         <div>
             <Nav/>
-           {
-            rec.map(r => <h3>{r.kohde}</h3>)
+            { 
+                
+                data.map(r => <h3>{r.huolto + ", " + r.kohde}</h3>)
             }
            
             <table className={formiStyle.taulu}>
