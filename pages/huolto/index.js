@@ -15,6 +15,18 @@ export const muokkaaRec = () => {
 const showHuoltoData = ({huollot}) => {       
     const bid = nanoid()
 
+    const muokkaaRec = (id) => {
+        console.log("muokkaaRec, id:", id)
+        fetch('../api/muokkaaRecord',{
+            method:'POST',
+            body:id
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Haettu huolto record:", data)
+        })
+    }
+
     const poistaRec = (id) => {
         console.log("poistaRec id:", id)
         fetch('../api/deleteHuolto', {
@@ -36,7 +48,7 @@ const showHuoltoData = ({huollot}) => {
                         <th>PVM</th><th>Kohde</th><th>Huolto</th><th>KM</th><th>Lisäinfo</th><th>Muokkaa</th><th>Poista</th>
                     </tr>
                 </thead>
-                <tbody key = {bid + 4}>
+                <tbody>
                 {huollot.map((e)=> (         
                     <>
                     <tr key={e.id}>                        
@@ -44,8 +56,8 @@ const showHuoltoData = ({huollot}) => {
                         <td>{e.kohde}</td>
                         <td>{e.huolto}</td>
                         <td>{e.km}</td>
-                        <td>{e.info}</td>                        
-                        <td><button onClick = {() => location.href="./Huolto/paivitaHuolto".concat(e.id)}>Muokkaa</button></td>
+                        <td>{e.info}</td>    
+                        <td><button onClick = {() => muokkaaRec(e.id)}>Muokkaa</button></td>                                            
                         <td><button onClick = {() => poistaRec(e.id)}>Poista</button></td>
                     </tr>                                        
                     </>                                                                       

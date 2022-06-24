@@ -3,22 +3,28 @@ import formiStyle from '../../styles/Formi.module.css'
 import Nav from "../../components/Nav"
 import { useState, useRef } from "react";
 import axios from "axios";
+import { read } from 'fs';
 
 /*
     Read data from prisma table and populate it to form fields.
 */
 
-export const readData = () => {
-    console.log("readData- funkkari")
-    const res = fetch('./api/Read', {
-        method:'GET'
-    })
-    .then (res => res.json())
-    .then (data => console.log(data))
-}
+export default async function paivitaHuolto(req, res) {
+    console.log("id: ", req.id)
 
+    const readData = (id) => {
+        console.log("readData- funkkari")
+        const res = fetch('./api/Read/id', {
+            method:'GET'
+        })
+        .then (res => res.json())
+        .then (data => console.log(data))
+    }
 
-export default async function paivitaHuolto() {
+    const urlString = window.location.search;
+    console.log("url:", urlString)
+    
+    console.log("readData:", readData)
     const formRef = useRef()
     const [disable, setDisable] = useState(false)
 
@@ -84,6 +90,6 @@ export default async function paivitaHuolto() {
         </form>
     </div>   
 </div>
-  )
+  )  
 }
 
