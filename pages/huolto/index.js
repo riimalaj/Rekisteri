@@ -3,8 +3,9 @@ import formiStyle from '../../styles/Formi.module.css'
 import Nav from '../../components/nav'
 import { prisma } from '../db'
 import {nanoid} from "nanoid"
+
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 export const muokkaaRec = () => {
     console.log("muokkaaRec")    
@@ -12,9 +13,11 @@ export const muokkaaRec = () => {
 }
 
 
-const showHuoltoData = ({huollot}) => {       
+const showHuoltoData = ({huollot}) => { 
+    const [rec, setRec] = useState([])      
     const bid = nanoid()
 
+    //how to render results via state :) ?
     const muokkaaRec = (id) => {
         console.log("muokkaaRec, id:", id)
         fetch('../api/muokkaaRecord',{
@@ -23,7 +26,13 @@ const showHuoltoData = ({huollot}) => {
         })
         .then(rec => rec.json())
         .then(data => {
-            console.log("Haettu huolto record:", data)
+            setRec(preRec => {
+                return {
+                ...preRec,
+                data
+            }
+            }
+                )
         })
     }
 
@@ -39,9 +48,15 @@ const showHuoltoData = ({huollot}) => {
         })
     }
 
+
+
     return (        
         <div>
             <Nav/>
+           {
+            rec.map(r => <h3>{r.kohde}</h3>)
+            }
+           
             <table className={formiStyle.taulu}>
                 <thead className={formiStyle.taulunHeader}>
                     <tr key = {bid + 3}>
