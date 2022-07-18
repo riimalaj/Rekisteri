@@ -87,7 +87,7 @@ const showHuoltoData = ({huollot}) => {
                 </table> 
                 
               
-            <Link key = {bid + 5} href = "./huolto/lisaaHuolto"><button className = {formiStyle.button}><a>Uusi huolto</a></button></Link>            
+            <Link key = {bid + 5} href = "./Huolto/lisaaHuolto"><button className = {formiStyle.button}><a>Uusi huolto</a></button></Link>            
         </div>              
 )
 

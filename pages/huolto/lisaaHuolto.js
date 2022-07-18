@@ -4,9 +4,8 @@ import formiStyle from '../../styles/Formi.module.css'
 import Nav from "../../components/Nav"
 //import { GetServerSideProps } from 'next'
 
-
-
 export default function Huolto() {
+    console.log("Now in lisaaHuolto.js file")
     const [formData, setFormData] = useState({})
     const [on, setOn] = useState(false)
 
@@ -60,7 +59,7 @@ export default function Huolto() {
         
     }
 
-    const show = () => setOn(true)
+   const show = () => setOn(true)
     return (
     <div>
     <Nav />
