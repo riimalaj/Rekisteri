@@ -35,7 +35,7 @@ const showData = ({contactList}) => {
 }
 
 export async function getServerSideProps() {
-        const contacts = await prisma.Contact.findMany()    
+        const contacts = await prisma.contact.findMany()    
         const newData = Object.values(contacts)
         const c = JSON.stringify(contacts)
         console.log(JSON.stringify(contacts))

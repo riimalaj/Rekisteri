@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import formiStyle from '../../styles/Formi.module.css'
 import Nav from '../../components/nav'
-import { prisma } from '../db'
-import {nanoid} from "nanoid"
-
+import { PrismaClient } from '@prisma/client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import {nanoid} from 'nanoid'
 
 export const muokkaaRec = () => {
     console.log("muokkaaRec")    
@@ -93,7 +92,8 @@ const showHuoltoData = ({huollot}) => {
 
 }
 
-export async function getServerSideProps() {        
+export async function getServerSideProps() {
+        const prisma = new PrismaClient()        
         const huollot = await prisma.Huolto.findMany()
         const newData2 = Object.values(huollot)
         //const c = JSON.stringify(huollot)

@@ -11,19 +11,14 @@
   ],
   "lowPriorityFiles": [
     "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js",
-    "static/development/_middlewareManifest.js"
+    "static/development/_ssgManifest.js"
   ],
+  "rootMainFiles": [],
   "pages": {
     "/Huolto": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/Huolto.js"
-    ],
-    "/Huolto/lisaaHuolto": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Huolto/lisaaHuolto.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
