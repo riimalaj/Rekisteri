@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Huolto" (
+CREATE TABLE "huolto" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "kohde" TEXT NOT NULL,
     "huolto" TEXT NOT NULL,

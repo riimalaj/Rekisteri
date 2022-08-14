@@ -1,0 +1,11 @@
+flex-direction: column;
+    flex-shrink:inherit;
+    margin-left: 20px; 
+    margin-top: 100px;
+    padding: 0;
+    
+    font-size: 18px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.3);   
+    border-radius: 5px;
+    padding: 10px 0 10px 20px;

@@ -21,8 +21,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/db.ts"  ],
+    "**/*.tsx",
+ "pages/db.ts"  ],
   "exclude": [
     "node_modules"
   ]
