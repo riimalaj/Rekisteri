@@ -1,12 +1,12 @@
-import {PrismaClient} from '@prisma/client'
+import { PrismaClient } from '.\node_modules\@prisma\client'
 
 declare global {
-  //allow global `var` declarations
-  //eslint-disable-next-line no-var
+  // allow global `var` declarations
+  // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined
 }
 
-const prisma =
+export const prisma =
   global.prisma ||
   new PrismaClient({
     log: ['query'],
@@ -14,4 +14,4 @@ const prisma =
 
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma
 
-export default {prisma}
+export default prisma

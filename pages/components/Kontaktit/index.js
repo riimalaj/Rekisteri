@@ -1,7 +1,7 @@
 import Nav from '../nav'
-import formiStyle from '../../styles/Formi.module.css'
+import formiStyle from '../../../styles/Formi.module.css'
 import Link from "next/link"
-import { prisma } from '../../../db'
+import { prisma } from '../../db'
 
 
 const showData = ({contactList}) => {
